@@ -29,6 +29,24 @@ Models: RYW (read-your-writes), MR (monotonic reads), MW (monotonic writes), and
 
 Each scenario begins from a healthy reset. Cleanup restores stopped nodes, network endpoints, and delay rules even when a collector fails.
 
+## 已实现实验（不含结果）
+
+下表只整理当前 harness 已实现并可执行的实验设计；不陈述任何 cell 的运行结果或一致性结论。
+
+| 场景 | 故障与时序 | 覆盖模型 | 要检验的路径 |
+|---|---|---|---|
+| `baseline` | 无故障，健康三节点副本集 | RYW、MR、MW、WFR | 各 concern、read preference 与 causal session 组合的健康基线 |
+| `partition-ryw-mr` | 在两次被测操作之间隔离 `{mongo1,mongo2}` 与 `{mongo3,labclient}` | RYW、MR | client 被移入可能落后的 `mongo3` 一侧后的读路径 |
+| `stop-mongo3` | Action 1 后停止 `mongo3`，Action 2 前维持停止状态 | RYW、MR、MW、WFR | 少一个 secondary 时的路由、确认与 session 依赖行为 |
+| `recover-delay` | Action 1 前对 `mongo3` 注入 `100ms ±20ms` 延迟和 `3%` 丢包；Action 2 前恢复 | RYW、MR、MW、WFR | 复制落后恢复后，后续操作是否满足前序依赖 |
+| `recover-partition-mongo12-vs-mongo3-client` | Action 1 前隔离 `{mongo1,mongo2}` 与 `{mongo3,labclient}`；Action 2 前恢复 | RYW、MR、MW、WFR | 多数派侧与落后副本/client 侧重新连通后的行为 |
+| `recover-partition-mongo1` | Action 1 前隔离 `mongo1`；Action 2 前恢复 | RYW、MR、MW、WFR | 单节点 primary-candidate 隔离和恢复 |
+| `recover-partition-mongo2` | Action 1 前隔离 `mongo2`；Action 2 前恢复 | RYW、MR、MW、WFR | 单个 secondary 隔离和恢复 |
+| `recover-partition-mongo3` | Action 1 前隔离 `mongo3`；Action 2 前恢复 | RYW、MR、MW、WFR | 被 `secondaryPreferred` 优先选择的 secondary 隔离和恢复 |
+| `recover-partition-client` | Action 1 前隔离 `labclient`；Action 2 前恢复 | RYW、MR、MW、WFR | client 与整个 replica set 失联后恢复 |
+
+所有适用的场景/模型组合都在同一 24-cell 配置矩阵下执行。对于包含故障的场景，host runner 使用 barrier 在规定时点安装或恢复故障，并将故障事件、操作记录和必要的 oplog snapshot 写入 artifact；这些 artifact 是后续独立分析的输入，不是本 README 的结果部分。
+
 ## Quick start
 
 Prerequisites: Docker Desktop with `docker compose`, plus Python 3 on the host for orchestration and result checking.
