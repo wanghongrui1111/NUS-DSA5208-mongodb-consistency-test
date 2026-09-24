@@ -1,0 +1,72 @@
+# Template instantiated four times with NETLAB_STACK=v4-{ryw,mr,wfr,mw}.
+# Each Compose project gets isolated containers, volumes, and Docker networks.
+services:
+  mongo1:
+    image: mongo:7.0
+    container_name: ${NETLAB_STACK}-mongo1
+    hostname: mongo1
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all", "--oplogSize", "128"]
+    volumes:
+      - mongo1-data:/data/db
+    networks:
+      - mongo-network
+    healthcheck:
+      test: ["CMD-SHELL", "mongosh --quiet --eval 'db.runCommand({ping: 1}).ok' | grep 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
+
+  mongo2:
+    image: mongo:7.0
+    container_name: ${NETLAB_STACK}-mongo2
+    hostname: mongo2
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all", "--oplogSize", "128"]
+    volumes:
+      - mongo2-data:/data/db
+    networks:
+      - mongo-network
+    healthcheck:
+      test: ["CMD-SHELL", "mongosh --quiet --eval 'db.runCommand({ping: 1}).ok' | grep 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
+
+  mongo3:
+    image: mongo:7.0
+    container_name: ${NETLAB_STACK}-mongo3
+    hostname: mongo3
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all", "--oplogSize", "128"]
+    volumes:
+      - mongo3-data:/data/db
+    networks:
+      - mongo-network
+    healthcheck:
+      test: ["CMD-SHELL", "mongosh --quiet --eval 'db.runCommand({ping: 1}).ok' | grep 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
+
+  tc-injector:
+    image: ghcr.io/alexei-led/pumba-alpine-nettools:latest
+    container_name: ${NETLAB_STACK}-tc-injector
+    network_mode: "service:mongo1"
+    cap_add: [NET_ADMIN]
+    command: ["sleep", "infinity"]
+    depends_on:
+      mongo1:
+        condition: service_started
+
+networks:
+  mongo-network:
+    name: ${NETLAB_STACK}-network
+
+volumes:
+  mongo1-data:
+    name: ${NETLAB_STACK}-mongo1-data
+  mongo2-data:
+    name: ${NETLAB_STACK}-mongo2-data
+  mongo3-data:
+    name: ${NETLAB_STACK}-mongo3-data
