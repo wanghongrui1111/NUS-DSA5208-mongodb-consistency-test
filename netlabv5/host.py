@@ -17,10 +17,10 @@ from typing import Optional
 
 from .matrix import cells
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[1]
 STACK = os.environ.get("NETLAB_STACK", "netlab-v5")
-COMPOSE = ["docker", "compose", "-p", STACK, "-f", "netlab-v5/compose.yaml",
-           "-f", "netlab-v5/compose.client.yaml"]
+COMPOSE = ["docker", "compose", "-p", STACK, "-f", "compose.yaml",
+           "-f", "compose.client.yaml"]
 NETWORK = f"{STACK}-network"
 PRIVATE = f"{STACK}-partition"
 NODES = ("mongo1", "mongo2", "mongo3")
@@ -282,7 +282,7 @@ def main(argv=None):
     parser.add_argument("--experiment", choices=EXPERIMENTS,
                         help="Run one model in this isolated Compose stack.")
     args = parser.parse_args(argv)
-    run(["docker", "build", "-t", "netlab-v5-client:latest", "netlab-v5/client-image"])
+    run(["docker", "build", "-t", "netlab-v5-client:latest", "client-image"])
     selected = SCENARIOS if args.scenario == "all" else tuple(s for s in SCENARIOS if s.id == args.scenario)
     for scenario in selected:
         experiments = scenario.experiments if args.experiment is None else (args.experiment,)

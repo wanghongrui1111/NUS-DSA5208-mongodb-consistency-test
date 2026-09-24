@@ -1,10 +1,10 @@
 services:
   labclient:
     image: netlab-v5-client:latest
-    working_dir: /work/netlab-v5
+    working_dir: /work
     environment:
-      PYTHONPATH: /work/netlab-v5
+      PYTHONPATH: /work
     volumes:
-      - ../:/work
+      - ./:/work
     networks:
       - mongo-network
