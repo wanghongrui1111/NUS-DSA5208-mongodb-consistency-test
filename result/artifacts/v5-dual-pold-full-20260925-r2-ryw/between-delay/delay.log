@@ -1,0 +1,1 @@
+direct tc netem: qdisc netem 8104: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 14790258661953789529

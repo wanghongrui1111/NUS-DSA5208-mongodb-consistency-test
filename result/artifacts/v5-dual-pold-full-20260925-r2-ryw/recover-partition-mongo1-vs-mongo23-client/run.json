@@ -1,0 +1,636 @@
+{
+  "scenario": "recover-partition-mongo1-vs-mongo23-client",
+  "only": null,
+  "experiments": [
+    "ryw",
+    "mr",
+    "wfr",
+    "mw"
+  ],
+  "events": [
+    {
+      "experiment": "ryw",
+      "cell": "rc=local|wc=1|pref=primary|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=local|wc=1|pref=primary|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=local|wc=1|pref=primaryPreferred|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=local|wc=1|pref=primaryPreferred|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=local|wc=1|pref=secondaryPreferred|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=local|wc=1|pref=secondaryPreferred|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=local|wc=majority|pref=primary|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=local|wc=majority|pref=primary|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=local|wc=majority|pref=primaryPreferred|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=local|wc=majority|pref=primaryPreferred|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=local|wc=majority|pref=secondaryPreferred|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=local|wc=majority|pref=secondaryPreferred|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=majority|wc=1|pref=primary|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=majority|wc=1|pref=primary|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=majority|wc=1|pref=primaryPreferred|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=majority|wc=1|pref=primaryPreferred|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=majority|wc=1|pref=secondaryPreferred|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=majority|wc=1|pref=secondaryPreferred|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=majority|wc=majority|pref=primary|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=majority|wc=majority|pref=primary|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=majority|wc=majority|pref=primaryPreferred|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=majority|wc=majority|pref=primaryPreferred|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=majority|wc=majority|pref=secondaryPreferred|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    },
+    {
+      "experiment": "ryw",
+      "cell": "rc=majority|wc=majority|pref=secondaryPreferred|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-ryw-mongo1",
+            "private": false
+          }
+        ]
+      }
+    }
+  ]
+}

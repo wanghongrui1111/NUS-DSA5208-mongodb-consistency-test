@@ -1,0 +1,276 @@
+{
+  "scenario": "recover-delay",
+  "only": null,
+  "experiments": [
+    "ryw",
+    "mr",
+    "wfr",
+    "mw"
+  ],
+  "events": [
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=1|pref=primary|causal=off",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 8150: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 17281175113885809516"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=1|pref=primary|causal=on",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 8151: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 2188795697601433906"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=1|pref=primaryPreferred|causal=off",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 8152: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 17304678890195767944"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=1|pref=primaryPreferred|causal=on",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 8153: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 12328335582969641453"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=1|pref=secondaryPreferred|causal=off",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 8154: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 5932774727599813048"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=1|pref=secondaryPreferred|causal=on",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 8155: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 4953957194956520078"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=majority|pref=primary|causal=off",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 8156: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 14847301262900514102"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=majority|pref=primary|causal=on",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 8157: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 9828602727450776001"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=majority|pref=primaryPreferred|causal=off",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 8158: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 14451847528003290542"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=majority|pref=primaryPreferred|causal=on",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 8159: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 13197998297486712993"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=majority|pref=secondaryPreferred|causal=off",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 815a: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 5484203601102323653"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=majority|pref=secondaryPreferred|causal=on",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 815b: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 4313200897725907198"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=1|pref=primary|causal=off",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 815c: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 3067423270827607267"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=1|pref=primary|causal=on",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 815d: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 417834020244875825"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=1|pref=primaryPreferred|causal=off",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 815e: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 16975203890690152528"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=1|pref=primaryPreferred|causal=on",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 815f: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 6378398721097735771"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=1|pref=secondaryPreferred|causal=off",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 8160: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 14310075322386398966"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=1|pref=secondaryPreferred|causal=on",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 8161: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 5064354865904322852"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=majority|pref=primary|causal=off",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 8162: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 16407420159283342417"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=majority|pref=primary|causal=on",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 8163: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 7258206655161574294"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=majority|pref=primaryPreferred|causal=off",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 8164: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 8273639226076781173"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=majority|pref=primaryPreferred|causal=on",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 8165: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 11999936407688470049"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=majority|pref=secondaryPreferred|causal=off",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 8166: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 12488100973332802661"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=majority|pref=secondaryPreferred|causal=on",
+      "fault": "delay",
+      "proof": {
+        "qdisc": "qdisc netem 8167: root refcnt 11 limit 1000 delay 100ms  20ms loss 3% seed 2407249726314506262"
+      },
+      "recovery": {
+        "delay_removed": true
+      }
+    }
+  ]
+}

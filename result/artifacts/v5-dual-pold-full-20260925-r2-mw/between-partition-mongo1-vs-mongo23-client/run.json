@@ -1,0 +1,948 @@
+{
+  "scenario": "between-partition-mongo1-vs-mongo23-client",
+  "only": null,
+  "experiments": [
+    "ryw",
+    "mr",
+    "wfr",
+    "mw"
+  ],
+  "events": [
+    {
+      "experiment": "mw",
+      "cell": "rc=local|wc=1|pref=primary|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 6741815575612143453\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=local|wc=1|pref=primary|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 6746259597870887848\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=local|wc=1|pref=primaryPreferred|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 6569549827928440175\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=local|wc=1|pref=primaryPreferred|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 15186297791080388243\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=local|wc=1|pref=secondaryPreferred|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 16179933220662772289\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=local|wc=1|pref=secondaryPreferred|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 15686421602294336054\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=local|wc=majority|pref=primary|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 14872665928211217393\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=local|wc=majority|pref=primary|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 6424253467431597329\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=local|wc=majority|pref=primaryPreferred|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 3612729309497257473\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=local|wc=majority|pref=primaryPreferred|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 5361107193195831748\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=local|wc=majority|pref=secondaryPreferred|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 10626002268285453317\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=local|wc=majority|pref=secondaryPreferred|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 15600809146981130507\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=majority|wc=1|pref=primary|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 5676124964496783137\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=majority|wc=1|pref=primary|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 5788578616197338854\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=majority|wc=1|pref=primaryPreferred|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 17190826143764579175\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=majority|wc=1|pref=primaryPreferred|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 14891021152807749459\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=majority|wc=1|pref=secondaryPreferred|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 1071029453851181158\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=majority|wc=1|pref=secondaryPreferred|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 398689540536878684\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=majority|wc=majority|pref=primary|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 1423932594528073155\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=majority|wc=majority|pref=primary|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 6608418907730337760\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=majority|wc=majority|pref=primaryPreferred|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 17252395232321591937\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=majority|wc=majority|pref=primaryPreferred|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 16375503979251665309\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=majority|wc=majority|pref=secondaryPreferred|causal=off",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 14067328312141281292\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    },
+    {
+      "experiment": "mw",
+      "cell": "rc=majority|wc=majority|pref=secondaryPreferred|causal=on",
+      "fault": "partition-mongo1-vs-mongo23-client",
+      "proof": {
+        "moved": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": true
+          }
+        ]
+      },
+      "services": [
+        "mongo1"
+      ],
+      "pold_delay": {
+        "mongo1": {
+          "target_ips": [
+            "192.168.48.2",
+            "192.168.48.3"
+          ],
+          "qdisc": "qdisc prio 504d: root refcnt 11 bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\nqdisc sfq 504e: parent 504d:1 limit 127p quantum 1514b depth 127 divisor 1024 \nqdisc netem 5050: parent 504d:3 limit 1000 delay 60s seed 2991083591846140172\nqdisc sfq 504f: parent 504d:2 limit 127p quantum 1514b depth 127 divisor 1024"
+        }
+      },
+      "recovery": {
+        "restored": [
+          {
+            "service": "mongo1",
+            "container": "v5-mw-mongo1",
+            "private": false
+          }
+        ]
+      },
+      "pold_delay_removed": {
+        "mongo1": "qdisc noqueue 0: root refcnt 2",
+        "mongo2": "qdisc noqueue 0: root refcnt 2"
+      }
+    }
+  ]
+}

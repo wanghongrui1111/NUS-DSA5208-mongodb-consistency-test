@@ -1,0 +1,11 @@
+{
+  "scenario": "baseline",
+  "only": null,
+  "experiments": [
+    "ryw",
+    "mr",
+    "wfr",
+    "mw"
+  ],
+  "events": []
+}

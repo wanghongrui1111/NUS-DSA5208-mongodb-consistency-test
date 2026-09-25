@@ -16,6 +16,7 @@ from .matrix import cells
 
 URI = "mongodb://mongo1:27017,mongo2:27017,mongo3:27017/netlabv5?replicaSet=rs0"
 NODES = ("mongo1", "mongo2", "mongo3")
+SEED_VERSION = 0
 EXPERIMENTS = {
     "ryw": ("write1", "read1"),
     "mr": ("read1", "read2"),
@@ -223,13 +224,45 @@ def collection_for(client, row, experiment):
     )
 
 
-def seed(client, collection, row, commands, attempt_id=None, write_concern="majority"):
-    """Create the single document read by MR/WFR outside their measured sequence."""
+def seed_is_converged(observed, expected_write_id):
+    """A seed is usable only when every data-bearing member has its exact tag."""
+    return all(observed.get(node) == expected_write_id for node in NODES)
+
+
+def wait_for_seed(collection, expected_write_id, timeout=30):
+    """Poll direct local reads until every member contains the setup document."""
+    deadline = time.monotonic() + timeout
+    observed = {}
+    while time.monotonic() < deadline:
+        observed = {}
+        for node in NODES:
+            client = MongoClient(f"mongodb://{node}:27017/?directConnection=true", serverSelectionTimeoutMS=3_000)
+            try:
+                document = client.netlabv5[collection.name].find_one({"_id": collection.name})
+                observed[node] = None if document is None else document.get("write_id")
+            except Exception:
+                observed[node] = None
+            finally:
+                client.close()
+        if seed_is_converged(observed, expected_write_id):
+            return {"ok": True, "nodes": observed, "wait_ms": int((time.monotonic() - (deadline - timeout)) * 1000)}
+        time.sleep(0.05)
+    raise TimeoutError(f"seed did not converge on all nodes: {observed}")
+
+
+def seed(client, collection, commands, attempt_id=None, write_concern="majority"):
+    """Create the measured document and prove it exists on all three nodes."""
     setup = collection.with_options(write_concern=WriteConcern(w=write_concern, wtimeout=15_000),
                                     read_preference=PrimaryPreferred())
-    record = write(setup, None, row["v1"], "seed", commands, attempt_id)
-    record["oplog"] = oplog(collection)
-    return record
+    record = None
+    for _ in range(3):
+        record = write(setup, None, SEED_VERSION, "seed", commands, attempt_id)
+        if record.get("ok"):
+            break
+        time.sleep(1)
+    if not record.get("ok"):
+        raise RuntimeError(f"seed write failed: {record.get('error')}")
+    return record, wait_for_seed(collection, record["tag"])
 
 
 def partition_timeout_options(timeout_ms):
@@ -259,8 +292,13 @@ def successor_context(row, experiment, predecessor, commands, second_uri, timeou
     return client, collection_for(client, row, experiment), session
 
 
+def pold_needs_source(experiment):
+    """Read-first relations need an old-primary write to establish lag before Action1."""
+    return experiment in ("mr", "wfr")
+
+
 def run_cell(client, row, experiment, barrier_dir=None, second_uri=None, first_uri=URI,
-             partition_timeout_ms=None, wait_release2=False, pre_action_barrier=False):
+             partition_timeout_ms=None, wait_release2=False, pre_action_barrier=False, pold_delay=False):
     commands = Commands()
     attempt_id = uuid.uuid4().hex
     timeout_options = None if partition_timeout_ms is None else partition_timeout_options(partition_timeout_ms)
@@ -271,13 +309,9 @@ def run_cell(client, row, experiment, barrier_dir=None, second_uri=None, first_u
     ops = []
     successor_workload = successor_session = None
     try:
-        pre_action = None
-        if experiment not in ("mr", "wfr"):
-            pre_action = pause_before_action(barrier_dir, experiment, row, pre_action_barrier)
-        if experiment in ("mr", "wfr"):
-            source_wc = 1 if experiment == "wfr" and pre_action_barrier else "majority"
-            ops.append(seed(client, collection, row, commands, attempt_id, source_wc))
-            pre_action = pause_before_action(barrier_dir, experiment, row, pre_action_barrier)
+        seed_record, seed_convergence = seed(client, collection, commands, attempt_id)
+        ops.append(seed_record)
+        pre_action = pause_before_action(barrier_dir, experiment, row, pre_action_barrier)
         between = None
         if experiment == "ryw":
             w1 = write(collection, session, row["v1"], "write1", commands, attempt_id)
@@ -290,6 +324,8 @@ def run_cell(client, row, experiment, barrier_dir=None, second_uri=None, first_u
             finish_between(barrier_dir, experiment, row)
             ops.extend((w1, r1))
         elif experiment == "mr":
+            if pold_delay and pold_needs_source(experiment):
+                ops.append(write(collection, session, row["v1"], "source", commands, attempt_id))
             r1 = read(collection, session, "read1", commands, partition_timeout_ms, attempt_id)
             between = pause_between(barrier_dir, experiment, row, wait_release2)
             successor_workload, successor_collection, successor_session = successor_context(
@@ -300,6 +336,9 @@ def run_cell(client, row, experiment, barrier_dir=None, second_uri=None, first_u
             finish_between(barrier_dir, experiment, row)
             ops.extend((r1, r2))
         elif experiment == "wfr":
+            if pold_delay:
+                source = write(collection, session, row["v1"], "source", commands, attempt_id)
+                ops.append(source)
             r1 = read(collection, session, "read1", commands, partition_timeout_ms, attempt_id)
             between = pause_between(barrier_dir, experiment, row, wait_release2)
             successor_workload, successor_collection, successor_session = successor_context(
@@ -323,7 +362,7 @@ def run_cell(client, row, experiment, barrier_dir=None, second_uri=None, first_u
             finish_between(barrier_dir, experiment, row)
             ops.extend((w1, w2))
         record = {**row, "experiment": experiment, "attempt_id": attempt_id, "ops": ops,
-                  "pre_action": pre_action, "between": between,
+                  "seed_convergence": seed_convergence, "pre_action": pre_action, "between": between,
                   "session_id": None if session is None else session.session_id}
         record["check"] = check(record)
         return record
@@ -367,7 +406,9 @@ def main(argv=None):
     parser.add_argument("--wait-release2", action="store_true",
                         help="Action 2 also waits for a .release2 barrier file.")
     parser.add_argument("--pre-action-barrier", action="store_true",
-                        help="MW waits for .pre_release before emitting W1.")
+                        help="Wait before Action 1 so the host can arm a fault.")
+    parser.add_argument("--pold-delay", action="store_true",
+                        help="WFR writes a delayed source after the pre-action barrier.")
     parser.add_argument("--reset-only", action="store_true")
     parser.add_argument("--no-reset", action="store_true", help="The host already reset and seeded the database.")
     args = parser.parse_args(argv)
@@ -384,7 +425,8 @@ def main(argv=None):
         barrier_dir = None if args.barrier_dir is None else Path(args.barrier_dir)
         for experiment in selected:
             records = [run_cell(client, row, experiment, barrier_dir, args.second_uri, args.first_uri,
-                                args.partition_timeout_ms, args.wait_release2, args.pre_action_barrier)
+                                args.partition_timeout_ms, args.wait_release2, args.pre_action_barrier,
+                                args.pold_delay)
                        for row in cells(args.only)]
             path = destination / experiment / "results.json" if args.experiment == "all" else destination
             save(path, records)

@@ -59,6 +59,16 @@ services:
       mongo1:
         condition: service_started
 
+  tc-injector-mongo2:
+    image: ghcr.io/alexei-led/pumba-alpine-nettools:latest
+    container_name: ${NETLAB_STACK}-tc-injector-mongo2
+    network_mode: "service:mongo2"
+    cap_add: [NET_ADMIN]
+    command: ["sleep", "infinity"]
+    depends_on:
+      mongo2:
+        condition: service_started
+
 networks:
   mongo-network:
     name: ${NETLAB_STACK}-network

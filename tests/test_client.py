@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from netlabv5.client import (EXPERIMENTS, barrier_paths, finish_record, partition_timeout_options,
-                             pre_action_paths, seed_successor_session, session_for, tag)
+                             pre_action_paths, seed_is_converged, seed_successor_session, session_for, tag)
 
 
 def test_finish_record_can_preserve_raw_operations_without_a_consistency_verdict():
@@ -29,6 +29,23 @@ def test_between_operation_barrier_paths_are_unique_per_cell():
 def test_pre_action_barrier_precedes_mw_write1():
     ready, release = pre_action_paths(Path("/tmp/barriers"), "mw", {"id": "cell"})
     assert (ready.name, release.name) == ("mw__cell.pre_ready", "mw__cell.pre_release")
+
+
+
+def test_seed_convergence_requires_the_exact_seed_write_id_on_every_node():
+    expected = "seed-attempt"
+    assert seed_is_converged({"mongo1": expected, "mongo2": expected, "mongo3": expected}, expected)
+    assert not seed_is_converged({"mongo1": expected, "mongo2": None, "mongo3": expected}, expected)
+    assert not seed_is_converged({"mongo1": expected, "mongo2": "older-seed", "mongo3": expected}, expected)
+
+
+
+def test_pold_delay_adds_a_source_write_when_action1_is_a_read():
+    from netlabv5.client import pold_needs_source
+    assert pold_needs_source("mr")
+    assert pold_needs_source("wfr")
+    assert not pold_needs_source("ryw")
+    assert not pold_needs_source("mw")
 
 
 def test_operation_tag_includes_the_unique_attempt_id():

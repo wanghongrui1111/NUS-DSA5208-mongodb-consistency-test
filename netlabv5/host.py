@@ -37,14 +37,16 @@ class Scenario:
 
 SCENARIOS = (
     Scenario("baseline", EXPERIMENTS, "none"),
-    Scenario("partition-ryw-mr", ("ryw", "mr"), "between", "partition-mongo12-vs-mongo3-client"),
-    Scenario("stop-mongo3", EXPERIMENTS, "between", "stop-mongo3"),
+    Scenario("between-delay", EXPERIMENTS, "between", "delay"),
+    # Both partition arms use the v4-style pre-delay, rather than an undecorated cut.
+    Scenario("between-partition-mongo12-vs-mongo3-client", EXPERIMENTS, "pold-delay", "partition-mongo12-vs-mongo3-client"),
+    Scenario("between-partition-mongo1-vs-mongo23-client", EXPERIMENTS, "pold-delay", "partition-mongo1-vs-mongo23-client"),
+    Scenario("between-stop-mongo3", EXPERIMENTS, "between", "stop-mongo3"),
     Scenario("recover-delay", EXPERIMENTS, "before", "delay"),
+    # Recovery arms deliberately use a plain partition: no P_old pre-delay.
     Scenario("recover-partition-mongo12-vs-mongo3-client", EXPERIMENTS, "before", "partition-mongo12-vs-mongo3-client"),
-    Scenario("recover-partition-mongo1", EXPERIMENTS, "before", "partition-mongo1"),
-    Scenario("recover-partition-mongo2", EXPERIMENTS, "before", "partition-mongo2"),
-    Scenario("recover-partition-mongo3", EXPERIMENTS, "before", "partition-mongo3"),
-    Scenario("recover-partition-client", EXPERIMENTS, "before", "partition-client"),
+    Scenario("recover-partition-mongo1-vs-mongo23-client", EXPERIMENTS, "before", "partition-mongo1-vs-mongo23-client"),
+    Scenario("recover-stop-mongo3", EXPERIMENTS, "before", "stop-mongo3"),
 )
 
 
@@ -57,10 +59,7 @@ def fault_plan(name):
         return {"kind": "delay", "targets": ("mongo3",)}
     groups = {
         "partition-mongo12-vs-mongo3-client": (("mongo1", "mongo2"), ("mongo3", "labclient")),
-        "partition-mongo1": (("mongo2", "mongo3", "labclient"), ("mongo1",)),
-        "partition-mongo2": (("mongo1", "mongo3", "labclient"), ("mongo2",)),
-        "partition-mongo3": (("mongo1", "mongo2", "labclient"), ("mongo3",)),
-        "partition-client": (("mongo1", "mongo2", "mongo3"), ("labclient",)),
+        "partition-mongo1-vs-mongo23-client": (("mongo2", "mongo3", "labclient"), ("mongo1",)),
     }
     if name not in groups:
         raise ValueError(f"unknown fault {name!r}")
@@ -69,7 +68,8 @@ def fault_plan(name):
 
 def run(command, **kwargs):
     env = {**os.environ, "NETLAB_STACK": STACK, **kwargs.pop("env", {})}
-    return subprocess.run(command, cwd=ROOT, text=True, check=True, env=env, **kwargs)
+    check = kwargs.pop("check", True)
+    return subprocess.run(command, cwd=ROOT, text=True, check=check, env=env, **kwargs)
 
 
 def docker(*args, **kwargs):
@@ -89,8 +89,82 @@ def container(service):
 
 
 def endpoints(network):
-    result = docker("network", "inspect", network, "--format", "{{json .Containers}}", capture_output=True)
-    return {details["Name"] for details in json.loads(result.stdout).values()}
+    result = docker("network", "inspect", network, "--format", "{{json .Containers}}", capture_output=True, check=False)
+    return set() if result.returncode else {details["Name"] for details in json.loads(result.stdout).values()}
+
+
+def tc_delay_script(ips, delay_ms):
+    """Delay mongo1 egress only toward the future mongo2/mongo3 majority side."""
+    filters = "\n".join(
+        f"tc filter add dev eth0 protocol ip parent 504d: prio 1 u32 match ip dst {ip}/32 flowid 504d:3"
+        for ip in ips
+    )
+    return "\n".join((
+        "tc qdisc del dev eth0 root 2>/dev/null || true",
+        "tc qdisc add dev eth0 root handle 504d: prio bands 3 priomap 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1",
+        "tc qdisc add dev eth0 parent 504d:1 handle 504e: sfq",
+        "tc qdisc add dev eth0 parent 504d:2 handle 504f: sfq",
+        f"tc qdisc add dev eth0 parent 504d:3 handle 5050: netem delay {delay_ms}ms 0ms",
+        filters,
+    ))
+
+
+def endpoint_ips(services):
+    details = docker("network", "inspect", NETWORK, "--format", "{{json .Containers}}", capture_output=True)
+    endpoints_by_name = {item["Name"]: item for item in json.loads(details.stdout).values()}
+    return [endpoints_by_name[container(service)]["IPv4Address"].split("/", 1)[0] for service in services]
+
+
+def pold_delay_proof(injector="tc-injector"):
+    result = docker("exec", container(injector), "tc", "qdisc", "show", "dev", "eth0", capture_output=True)
+    return result.stdout.strip()
+
+
+def pold_delay_links(fault):
+    """Source egress links that must hold the future client-side member stale."""
+    links = {
+        # mongo3 can pull from mongo1 or mongo2, so delay both response paths.
+        "partition-mongo12-vs-mongo3-client": (("mongo1", ("mongo3",)), ("mongo2", ("mongo3",))),
+        "partition-mongo1-vs-mongo23-client": (("mongo1", ("mongo2", "mongo3")),),
+    }
+    return links[fault]
+
+
+def pold_injector(source):
+    return "tc-injector" if source == "mongo1" else f"tc-injector-{source}"
+
+
+def pold_second_uri(fault):
+    if fault == "partition-mongo12-vs-mongo3-client":
+        return "mongodb://mongo3:27017/?directConnection=true"
+    if fault == "partition-mongo1-vs-mongo23-client":
+        return "mongodb://mongo2:27017,mongo3:27017/netlabv5?replicaSet=rs0"
+    raise ValueError(f"unknown P_old fault {fault!r}")
+
+
+def start_pold_delay(fault):
+    proofs = {}
+    for source, targets in pold_delay_links(fault):
+        injector = pold_injector(source)
+        ips = endpoint_ips(targets)
+        docker("exec", container(injector), "sh", "-ec", tc_delay_script(ips, 60_000))
+        proof = pold_delay_proof(injector)
+        if "netem" not in proof or ("60000ms" not in proof and "delay 60s" not in proof):
+            raise RuntimeError(f"P_old delay proof missing on {source}: {proof}")
+        proofs[source] = {"target_ips": ips, "qdisc": proof}
+    return proofs
+
+
+def stop_pold_delay():
+    proofs = {}
+    for source in ("mongo1", "mongo2"):
+        injector = pold_injector(source)
+        docker("exec", container(injector), "sh", "-ec", "tc qdisc del dev eth0 root 2>/dev/null || true", check=False)
+        proof = pold_delay_proof(injector)
+        if "netem" in proof:
+            raise RuntimeError(f"P_old delay remained installed on {source}: {proof}")
+        proofs[source] = proof
+    return proofs
 
 
 def ensure_private_network():
@@ -159,7 +233,9 @@ def wait(path, process, timeout=90):
     deadline = time.monotonic() + timeout
     while not path.exists():
         if process.poll() is not None:
-            raise RuntimeError(f"collector exited {process.returncode} before {path.name}")
+            stdout, stderr = process.communicate()
+            detail = (stderr or stdout)[-500:]
+            raise RuntimeError(f"collector exited {process.returncode} before {path.name}: {detail}")
         if time.monotonic() > deadline:
             raise TimeoutError(path.name)
         time.sleep(.05)
@@ -180,14 +256,16 @@ def wait_for_mongo(node, timeout=90):
     raise RuntimeError(f"{node} did not accept MongoDB connections")
 
 
-def wait_for_primary(timeout=90):
+def wait_for_primary(timeout=90, expected=None):
     deadline = time.monotonic() + timeout
     script = "const s=rs.status();const p=s.members.find(m=>m.stateStr==='PRIMARY');print(p?p.name:'')"
     while time.monotonic() < deadline:
         probe = subprocess.run(["docker", "exec", container("mongo1"), "mongosh", "--quiet", "--eval", script],
                                cwd=ROOT, text=True, capture_output=True)
         if probe.returncode == 0 and probe.stdout.strip():
-            return probe.stdout.strip().split(":", 1)[0]
+            primary = probe.stdout.strip().split(":", 1)[0]
+            if expected is None or primary == expected:
+                return primary
         time.sleep(1)
     raise RuntimeError("replica set did not elect a primary")
 
@@ -198,9 +276,21 @@ def healthy_reset():
         wait_for_mongo(node)
     script = "try{rs.status()}catch(e){rs.initiate({_id:'rs0',members:[{_id:0,host:'mongo1:27017',priority:2},{_id:1,host:'mongo2:27017',priority:1},{_id:2,host:'mongo3:27017',priority:0}]})}"
     docker("exec", container("mongo1"), "mongosh", "--quiet", "--eval", script)
-    primary = wait_for_primary()
-    docker("exec", container(primary), "mongosh", "--quiet", "--eval",
-           "db.getSiblingDB('netlabv5').dropDatabase({writeConcern:{w:'majority',wtimeout:15000}})")
+    deadline = time.monotonic() + 90
+    while time.monotonic() < deadline:
+        try:
+            primary = wait_for_primary(timeout=15)
+        except RuntimeError:
+            time.sleep(1)
+            continue
+        dropped = docker("exec", container(primary), "mongosh", "--quiet", "--eval",
+                         "db.getSiblingDB('netlabv5').dropDatabase({writeConcern:{w:'majority',wtimeout:15000}})",
+                         capture_output=True, check=False)
+        if dropped.returncode == 0:
+            wait_for_primary(expected="mongo1")
+            return
+        time.sleep(1)
+    raise RuntimeError("could not drop test database on a stable primary")
 
 
 def run_experiment(destination, scenario, experiment, only):
@@ -213,7 +303,14 @@ def run_experiment(destination, scenario, experiment, only):
                "--experiment", experiment, "--output", output, "--no-reset"]
     if scenario.phase != "none":
         command.extend(("--barrier-dir", client_barriers))
-    if scenario.phase == "before":
+    if scenario.phase == "pold-delay":
+        run([*COMPOSE, "up", "-d", "tc-injector", "tc-injector-mongo2"])
+        command.extend((
+            "--first-uri", "mongodb://mongo1:27017/?directConnection=true",
+            "--second-uri", pold_second_uri(scenario.fault),
+            "--partition-timeout-ms", "30000", "--wait-release2", "--pre-action-barrier", "--pold-delay",
+        ))
+    elif scenario.phase == "before":
         command.append("--pre-action-barrier")
     if only:
         command.extend(("--only", only))
@@ -225,7 +322,21 @@ def run_experiment(destination, scenario, experiment, only):
         for row in rows:
             if scenario.phase == "none":
                 continue
-            if scenario.phase == "before":
+            if scenario.phase == "pold-delay":
+                wait(barrier(barriers, experiment, row, "pre_ready"), process)
+                delay = start_pold_delay(scenario.fault)
+                barrier(barriers, experiment, row, "pre_release").touch()
+                wait(barrier(barriers, experiment, row, "ready"), process)
+                event = activate_fault(scenario.fault, destination)
+                event["pold_delay"] = delay
+                barrier(barriers, experiment, row, "release").touch()
+                barrier(barriers, experiment, row, "release2").touch()
+                wait(barrier(barriers, experiment, row, "done"), process)
+                event["recovery"] = clear_fault(scenario.fault, event)
+                event["pold_delay_removed"] = stop_pold_delay()
+                # Next cell's Action1 uses direct mongo1; restore that invariant first.
+                wait_for_primary(expected="mongo1")
+            elif scenario.phase == "before":
                 wait(barrier(barriers, experiment, row, "pre_ready"), process)
                 event = activate_fault(scenario.fault, destination)
                 barrier(barriers, experiment, row, "pre_release").touch()
@@ -236,9 +347,10 @@ def run_experiment(destination, scenario, experiment, only):
                 wait(barrier(barriers, experiment, row, "ready"), process)
                 event = activate_fault(scenario.fault, destination)
                 barrier(barriers, experiment, row, "release").touch()
-            wait(barrier(barriers, experiment, row, "done"), process)
-            if scenario.phase == "between":
-                event["recovery"] = clear_fault(scenario.fault, event)
+            if scenario.phase != "pold-delay":
+                wait(barrier(barriers, experiment, row, "done"), process)
+                if scenario.phase == "between":
+                    event["recovery"] = clear_fault(scenario.fault, event)
             barrier(barriers, experiment, row, "proceed").touch()
             events.append({"cell": row["id"], **event})
         stdout, stderr = process.communicate(timeout=180)
@@ -247,6 +359,11 @@ def run_experiment(destination, scenario, experiment, only):
         if process.returncode:
             raise RuntimeError(f"{experiment} failed: {stderr[-500:]}")
     finally:
+        if scenario.phase == "pold-delay":
+            try:
+                stop_pold_delay()
+            except Exception:
+                pass
         if process.poll() is None:
             process.terminate(); process.wait(timeout=30)
     return events

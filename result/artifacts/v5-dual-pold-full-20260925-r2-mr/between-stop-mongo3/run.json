@@ -1,0 +1,228 @@
+{
+  "scenario": "between-stop-mongo3",
+  "only": null,
+  "experiments": [
+    "ryw",
+    "mr",
+    "wfr",
+    "mw"
+  ],
+  "events": [
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=1|pref=primary|causal=off",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=1|pref=primary|causal=on",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=1|pref=primaryPreferred|causal=off",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=1|pref=primaryPreferred|causal=on",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=1|pref=secondaryPreferred|causal=off",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=1|pref=secondaryPreferred|causal=on",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=majority|pref=primary|causal=off",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=majority|pref=primary|causal=on",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=majority|pref=primaryPreferred|causal=off",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=majority|pref=primaryPreferred|causal=on",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=majority|pref=secondaryPreferred|causal=off",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=local|wc=majority|pref=secondaryPreferred|causal=on",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=1|pref=primary|causal=off",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=1|pref=primary|causal=on",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=1|pref=primaryPreferred|causal=off",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=1|pref=primaryPreferred|causal=on",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=1|pref=secondaryPreferred|causal=off",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=1|pref=secondaryPreferred|causal=on",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=majority|pref=primary|causal=off",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=majority|pref=primary|causal=on",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=majority|pref=primaryPreferred|causal=off",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=majority|pref=primaryPreferred|causal=on",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=majority|pref=secondaryPreferred|causal=off",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    },
+    {
+      "experiment": "mr",
+      "cell": "rc=majority|wc=majority|pref=secondaryPreferred|causal=on",
+      "fault": "stop-mongo3",
+      "proof": "mongo3 stopped",
+      "recovery": {
+        "mongo3_restarted": true
+      }
+    }
+  ]
+}

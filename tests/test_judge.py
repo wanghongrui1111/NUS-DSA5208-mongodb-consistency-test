@@ -118,7 +118,20 @@ def test_wfr_detects_a_successor_branch_missing_the_exact_source_read_by_r1():
     assert check(record) == "violated"
 
 
-def test_wfr_is_inconclusive_when_r1_did_not_read_this_attempt_source():
+
+def test_wfr_pold_delay_uses_the_delayed_source_write_not_the_seed_as_predecessor():
+    record = {
+        "experiment": "wfr",
+        "ops": [
+            {"op": "seed", "tag": "seed", "ok": True},
+            {"op": "source", "tag": "source", "ok": True},
+            {"op": "read1", "ok": True, "value": 1, "source_write_id": "source"},
+            {"op": "write1", "tag": "successor", "ok": True,
+             "command": {"server": "mongo2:27017"},
+             "oplog_after_successor_ack": {"mongo2": [{"tag": "successor"}]}}
+        ],
+    }
+    assert check(record) == "violated"
     record = {
         "experiment": "wfr",
         "ops": [

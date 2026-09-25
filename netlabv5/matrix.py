@@ -28,6 +28,6 @@ def cells(only=None):
     filters = {} if only is None else dict(part.split("=", 1) for part in only.split(","))
 
     def view(row):
-        return {**row, "causal": "on" if row["causal"] else "off"}
+        return {**row, "wc": str(row["wc"]), "causal": "on" if row["causal"] else "off"}
 
     return [row for row in CELLS if all(view(row).get(key) == value for key, value in filters.items())]

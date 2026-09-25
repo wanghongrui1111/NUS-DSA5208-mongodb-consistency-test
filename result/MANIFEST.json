@@ -1,0 +1,602 @@
+[
+  {
+    "path": "INCONCLUSIVE_ANALYSIS.md",
+    "sha256": "357b4e5c83436daef573b71b30dea7ffc300094477738d54e8621f86e36358af",
+    "bytes": 16752
+  },
+  {
+    "path": "REPORT.md",
+    "sha256": "0d3705036ad5c09f560a6b3294940e5f74e08b1dacc19c76098bb2a3ce049422",
+    "bytes": 28745
+  },
+  {
+    "path": "V4_TO_V5_WFR_POLD_CHANGE.md",
+    "sha256": "6039a019544d7950ae420cb44810a4e4362babd35048caa7e98145d1cab60ec5",
+    "bytes": 1123
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/baseline/mr.stderr.log",
+    "sha256": "39b525f3a17291c25eb5899a61f4222d8dad9eb24bd071956ebafcf18f3c8f84",
+    "bytes": 107
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/baseline/mr.stdout.log",
+    "sha256": "65f71e1feab52120a5822c0e5233d55e2fbf8f060217b9d29507f35b46b9fd44",
+    "bytes": 21
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/baseline/run.json",
+    "sha256": "61ef127c41e5749a793a262d1d20be71cccbafa968854778aa4c0e9012796152",
+    "bytes": 126
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/between-delay/delay.log",
+    "sha256": "bea4dfab689ce192ae167712e2f9cb7f932afa00a7f338f858b3756df05de495",
+    "bytes": 112
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/between-delay/mr.stderr.log",
+    "sha256": "11c1e4aeec06a1fbef13e08ebc436d4bc9a01dce3c7f115e6e3e47c7757efd53",
+    "bytes": 107
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/between-delay/mr.stdout.log",
+    "sha256": "65f71e1feab52120a5822c0e5233d55e2fbf8f060217b9d29507f35b46b9fd44",
+    "bytes": 21
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/between-delay/run.json",
+    "sha256": "19278365ff2d1e0bd026348d7708a2c3008d14fa8e083e41075456cf7528e79f",
+    "bytes": 7991
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/between-partition-mongo1-vs-mongo23-client/mr.stderr.log",
+    "sha256": "bdd5b938a7cfec5876b9a30b222f4cf305389b029673651370142116378170fd",
+    "bytes": 107
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/between-partition-mongo1-vs-mongo23-client/mr.stdout.log",
+    "sha256": "65f71e1feab52120a5822c0e5233d55e2fbf8f060217b9d29507f35b46b9fd44",
+    "bytes": 21
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/between-partition-mongo1-vs-mongo23-client/run.json",
+    "sha256": "e8920aed109714006c6692e4732b6a6b9b1aeeb3976b34ef83a9537df31783aa",
+    "bytes": 29172
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/between-partition-mongo12-vs-mongo3-client/mr.stderr.log",
+    "sha256": "50963093b74b02b9f0dc4bd898bff25fbfeaf118dcdc3acd76b704efd85bca57",
+    "bytes": 107
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/between-partition-mongo12-vs-mongo3-client/mr.stdout.log",
+    "sha256": "65f71e1feab52120a5822c0e5233d55e2fbf8f060217b9d29507f35b46b9fd44",
+    "bytes": 21
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/between-partition-mongo12-vs-mongo3-client/run.json",
+    "sha256": "208e03aa53c98475be102804b8d869169a0ad481f78fa00e982fdc1aad242e21",
+    "bytes": 46697
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/between-stop-mongo3/mr.stderr.log",
+    "sha256": "6067ee75d9f0ec8afbcb9d3d2a8392ebdc1a7ba2b8982e42ba5973c65d4156a4",
+    "bytes": 107
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/between-stop-mongo3/mr.stdout.log",
+    "sha256": "65f71e1feab52120a5822c0e5233d55e2fbf8f060217b9d29507f35b46b9fd44",
+    "bytes": 21
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/between-stop-mongo3/run.json",
+    "sha256": "e4ed19827b921b2c9c1fe7274483f03f08cfdd62bebb4359bb3c0ed96829c051",
+    "bytes": 5639
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/recover-delay/delay.log",
+    "sha256": "bdb537c64b5bec8687c7c08a5788464d0d7778383f805c22d21e40fedf200a7a",
+    "bytes": 112
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/recover-delay/mr.stderr.log",
+    "sha256": "7207f77864246511ba3e06e53d26f49a0f658f7f686037c3b7cad941956266b6",
+    "bytes": 107
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/recover-delay/mr.stdout.log",
+    "sha256": "65f71e1feab52120a5822c0e5233d55e2fbf8f060217b9d29507f35b46b9fd44",
+    "bytes": 21
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/recover-delay/run.json",
+    "sha256": "51d9cbe7b1cfbe814c075c9db5a6db20ce788b449faafbdd71875d1d980901cc",
+    "bytes": 7995
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/recover-partition-mongo1-vs-mongo23-client/mr.stderr.log",
+    "sha256": "b99021d0dab7fa5bc3d70ba6b8d59187ab74c53f235b770778326621e4b21557",
+    "bytes": 107
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/recover-partition-mongo1-vs-mongo23-client/mr.stdout.log",
+    "sha256": "65f71e1feab52120a5822c0e5233d55e2fbf8f060217b9d29507f35b46b9fd44",
+    "bytes": 21
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/recover-partition-mongo1-vs-mongo23-client/run.json",
+    "sha256": "d7a7bb906d6a758fef65a13bc75cc2dd2423332be60dd60c7b4a860e85af7c35",
+    "bytes": 13894
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/recover-partition-mongo12-vs-mongo3-client/mr.stderr.log",
+    "sha256": "b440175cbb706eae9946dca2cdaf2b6490c9b397262bb3310c9e48f5ff1ee1a9",
+    "bytes": 107
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/recover-partition-mongo12-vs-mongo3-client/mr.stdout.log",
+    "sha256": "65f71e1feab52120a5822c0e5233d55e2fbf8f060217b9d29507f35b46b9fd44",
+    "bytes": 21
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/recover-partition-mongo12-vs-mongo3-client/run.json",
+    "sha256": "cbfdbbba690d9fc061f611e08f1e7c733ce31b367754ef4e38a412039e04a2c0",
+    "bytes": 21622
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/recover-stop-mongo3/mr.stderr.log",
+    "sha256": "295f3b3487bfde0f881422b7fef08ce40b8852d82792718909ee2385385420c8",
+    "bytes": 107
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/recover-stop-mongo3/mr.stdout.log",
+    "sha256": "65f71e1feab52120a5822c0e5233d55e2fbf8f060217b9d29507f35b46b9fd44",
+    "bytes": 21
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mr/recover-stop-mongo3/run.json",
+    "sha256": "aedec779a7925891c0a6e9cd23b383345e1788b7aa54b92280431d82d0aad399",
+    "bytes": 5639
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/baseline/mw.stderr.log",
+    "sha256": "44b54a66d113a958a85e96a08b77c937cedf12028583dcd203367a8dbd6aec32",
+    "bytes": 107
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/baseline/mw.stdout.log",
+    "sha256": "9cf9d2de09d4bf25b6bc22397a1997309f94aa9702bb4446cada655fba5b8458",
+    "bytes": 21
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/baseline/run.json",
+    "sha256": "61ef127c41e5749a793a262d1d20be71cccbafa968854778aa4c0e9012796152",
+    "bytes": 126
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/between-delay/delay.log",
+    "sha256": "9bd31e894a9eaf6da13c5170d6464f925585d8d548ff7623973df8d13443bd88",
+    "bytes": 113
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/between-delay/mw.stderr.log",
+    "sha256": "c214c85f1f70c4e6a5f957c6d6d05903f3807d57105980ef40ed182071aebd49",
+    "bytes": 107
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/between-delay/mw.stdout.log",
+    "sha256": "9cf9d2de09d4bf25b6bc22397a1997309f94aa9702bb4446cada655fba5b8458",
+    "bytes": 21
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/between-delay/run.json",
+    "sha256": "d75c7e6528fc93ccff57da9b6da4b55c4cdcccdfac5543fd323fbf8ce1510c0a",
+    "bytes": 7997
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/between-partition-mongo1-vs-mongo23-client/mw.stderr.log",
+    "sha256": "a745c7af28caf83d8f7948a6ee45029b40f0a9bdb4a10832627c95663ea5b410",
+    "bytes": 107
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/between-partition-mongo1-vs-mongo23-client/mw.stdout.log",
+    "sha256": "9cf9d2de09d4bf25b6bc22397a1997309f94aa9702bb4446cada655fba5b8458",
+    "bytes": 21
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/between-partition-mongo1-vs-mongo23-client/run.json",
+    "sha256": "c66ba2c1bba380198fd90581f2cf92296e2bf1857aa75d7982184072a6b87e14",
+    "bytes": 29168
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/between-partition-mongo12-vs-mongo3-client/mw.stderr.log",
+    "sha256": "1d5ba9d409d08ffa0d1307827257404985681ce4cfa0d0197aeba39849f32327",
+    "bytes": 107
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/between-partition-mongo12-vs-mongo3-client/mw.stdout.log",
+    "sha256": "9cf9d2de09d4bf25b6bc22397a1997309f94aa9702bb4446cada655fba5b8458",
+    "bytes": 21
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/between-partition-mongo12-vs-mongo3-client/run.json",
+    "sha256": "25b0a84a7540cf302d6977595a29cfb965e62d7327e39b3ded28c85aa223fd2d",
+    "bytes": 46704
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/between-stop-mongo3/mw.stderr.log",
+    "sha256": "20c16a6f0614441a7bd443b9666982187b4f55696b5c09ccfff828bcfd96c19b",
+    "bytes": 107
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/between-stop-mongo3/mw.stdout.log",
+    "sha256": "9cf9d2de09d4bf25b6bc22397a1997309f94aa9702bb4446cada655fba5b8458",
+    "bytes": 21
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/between-stop-mongo3/run.json",
+    "sha256": "023be5e61e8c6b264daacacc2cede36f13c653359df0fe54063316940f21013e",
+    "bytes": 5639
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/recover-delay/delay.log",
+    "sha256": "69050fad6bd5d5e4cb82471af907521a1e5ce90105e475b3dd145781d85d8998",
+    "bytes": 112
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/recover-delay/mw.stderr.log",
+    "sha256": "3ee1c774280a1c236b6a6fce1de25100dceeb948d52616e04bdb173f1a9ede49",
+    "bytes": 107
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/recover-delay/mw.stdout.log",
+    "sha256": "9cf9d2de09d4bf25b6bc22397a1997309f94aa9702bb4446cada655fba5b8458",
+    "bytes": 21
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/recover-delay/run.json",
+    "sha256": "20a2d665fb5f5de6985e6d146b7eb0134453100fff0e68fd4916e7baf152b516",
+    "bytes": 7995
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/recover-partition-mongo1-vs-mongo23-client/mw.stderr.log",
+    "sha256": "d70827ba7de09b583f9aafa8eedd49188f32bf054149956feda302c61c82cecc",
+    "bytes": 107
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/recover-partition-mongo1-vs-mongo23-client/mw.stdout.log",
+    "sha256": "9cf9d2de09d4bf25b6bc22397a1997309f94aa9702bb4446cada655fba5b8458",
+    "bytes": 21
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/recover-partition-mongo1-vs-mongo23-client/run.json",
+    "sha256": "a8b0e68d51f1c48d1c2264ab799d1bfa3bed4cf8cd9186ae08a35f4a10a539d7",
+    "bytes": 13894
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/recover-partition-mongo12-vs-mongo3-client/mw.stderr.log",
+    "sha256": "61ee311c3ed6537cfa5a6831ab9cd048b177e8b74b22aa3e265deeefd3813205",
+    "bytes": 107
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/recover-partition-mongo12-vs-mongo3-client/mw.stdout.log",
+    "sha256": "9cf9d2de09d4bf25b6bc22397a1997309f94aa9702bb4446cada655fba5b8458",
+    "bytes": 21
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/recover-partition-mongo12-vs-mongo3-client/run.json",
+    "sha256": "ee7443448563c369aeaa741507f7774266b7147c0e3951856d6194303a12eeba",
+    "bytes": 21622
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/recover-stop-mongo3/mw.stderr.log",
+    "sha256": "229a9a3f39221949eea60e206cf99b411fa8230a10b2c992c5ad3165c365e82d",
+    "bytes": 107
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/recover-stop-mongo3/mw.stdout.log",
+    "sha256": "9cf9d2de09d4bf25b6bc22397a1997309f94aa9702bb4446cada655fba5b8458",
+    "bytes": 21
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-mw/recover-stop-mongo3/run.json",
+    "sha256": "25a3df1e7ed84921e7a1c12f6ac0b34385657dc253a8b4c2ebb24e01b6313460",
+    "bytes": 5639
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/baseline/run.json",
+    "sha256": "61ef127c41e5749a793a262d1d20be71cccbafa968854778aa4c0e9012796152",
+    "bytes": 126
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/baseline/ryw.stderr.log",
+    "sha256": "827be9d2ac870714b59882faf433c681d735848ba60310f5017cdbfcb22d039b",
+    "bytes": 109
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/baseline/ryw.stdout.log",
+    "sha256": "80e89153c161688924745bbbdc0dc8dd62deb38fa25893dfbd0effcf5f56b14e",
+    "bytes": 22
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/between-delay/delay.log",
+    "sha256": "64e3369445b71b7a12e891ae5fbc6ec1990454ae3408a370eeeccdb643647b5e",
+    "bytes": 113
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/between-delay/run.json",
+    "sha256": "a0fd3fe9047dc010fab1e41ecb33211c1c24c21f51e4801b73371d87df6f0009",
+    "bytes": 8020
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/between-delay/ryw.stderr.log",
+    "sha256": "f1a14ae91c696285058d905b465b1cb13272ae400b107a979ce08ad54305f876",
+    "bytes": 109
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/between-delay/ryw.stdout.log",
+    "sha256": "80e89153c161688924745bbbdc0dc8dd62deb38fa25893dfbd0effcf5f56b14e",
+    "bytes": 22
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/between-partition-mongo1-vs-mongo23-client/run.json",
+    "sha256": "1aaafd00611dfaddc7f8d76a20f654ef036edec76f433b675898e12ebc8e5beb",
+    "bytes": 29244
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/between-partition-mongo1-vs-mongo23-client/ryw.stderr.log",
+    "sha256": "3fbf0bd04481fcb65a1ff1b42caceebe00c673d86f6317b9fe3cea744f4663a4",
+    "bytes": 109
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/between-partition-mongo1-vs-mongo23-client/ryw.stdout.log",
+    "sha256": "80e89153c161688924745bbbdc0dc8dd62deb38fa25893dfbd0effcf5f56b14e",
+    "bytes": 22
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/between-partition-mongo12-vs-mongo3-client/run.json",
+    "sha256": "00053353535d581bbc36ff0a07ea621bd1ec0fc3e6225e81a7b4c1474738502a",
+    "bytes": 46823
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/between-partition-mongo12-vs-mongo3-client/ryw.stderr.log",
+    "sha256": "7927155ad06aa67823cd050f12f8ed04a8b4108479efe33e38fe2d3cf9a787f9",
+    "bytes": 109
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/between-partition-mongo12-vs-mongo3-client/ryw.stdout.log",
+    "sha256": "80e89153c161688924745bbbdc0dc8dd62deb38fa25893dfbd0effcf5f56b14e",
+    "bytes": 22
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/between-stop-mongo3/run.json",
+    "sha256": "ff5606e0d6b0c213dcbfa4888ca99068e112e101e5bb9c39bd6dd1f198fead1a",
+    "bytes": 5663
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/between-stop-mongo3/ryw.stderr.log",
+    "sha256": "01e2e7158f8c7c7640b5f6bfb0ad7e6029f68281b0751b1e69c34669316154dd",
+    "bytes": 109
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/between-stop-mongo3/ryw.stdout.log",
+    "sha256": "80e89153c161688924745bbbdc0dc8dd62deb38fa25893dfbd0effcf5f56b14e",
+    "bytes": 22
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/recover-delay/delay.log",
+    "sha256": "a3b0c58bbb4cc7bb8cdf880f32292df8aa5b13955a49e7c494fcf5279db035b2",
+    "bytes": 112
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/recover-delay/run.json",
+    "sha256": "ec7b6ead3a510506e41f45c9be2286d1d959351c068bacc8f09581335e5e9ebf",
+    "bytes": 8019
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/recover-delay/ryw.stderr.log",
+    "sha256": "e2a0141ec660cfd35124604b6fcf81d710702654666c3224b6a29c00857260f9",
+    "bytes": 109
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/recover-delay/ryw.stdout.log",
+    "sha256": "80e89153c161688924745bbbdc0dc8dd62deb38fa25893dfbd0effcf5f56b14e",
+    "bytes": 22
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/recover-partition-mongo1-vs-mongo23-client/run.json",
+    "sha256": "7a300db3ebe75e6830a7c1c3b30d8b82b5b4cbb3f9264e105af5a08b000ebc07",
+    "bytes": 13966
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/recover-partition-mongo1-vs-mongo23-client/ryw.stderr.log",
+    "sha256": "29511ed83a4f37fd0f99da7ab98603f86bacde939b8581e4bdff468c3d521838",
+    "bytes": 109
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/recover-partition-mongo1-vs-mongo23-client/ryw.stdout.log",
+    "sha256": "80e89153c161688924745bbbdc0dc8dd62deb38fa25893dfbd0effcf5f56b14e",
+    "bytes": 22
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/recover-partition-mongo12-vs-mongo3-client/run.json",
+    "sha256": "4b3386d382e99d151d9d4c26c470093811805133cf9fef4504ca49c93dd88186",
+    "bytes": 21742
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/recover-partition-mongo12-vs-mongo3-client/ryw.stderr.log",
+    "sha256": "49a6f42aa93ca0f207def9da256284eac3371b1b1261f771255a8749917c68b5",
+    "bytes": 109
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/recover-partition-mongo12-vs-mongo3-client/ryw.stdout.log",
+    "sha256": "80e89153c161688924745bbbdc0dc8dd62deb38fa25893dfbd0effcf5f56b14e",
+    "bytes": 22
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/recover-stop-mongo3/run.json",
+    "sha256": "f7756b7301903cdbc04cbbdf2faf6f57223cd4400b75b42d38ac9a33c6e2ab6e",
+    "bytes": 5663
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/recover-stop-mongo3/ryw.stderr.log",
+    "sha256": "aec63f5014e76fbb9f577783134dcb0fd129d5de3ac55b6c0b6fb27bbfa5894b",
+    "bytes": 109
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-ryw/recover-stop-mongo3/ryw.stdout.log",
+    "sha256": "80e89153c161688924745bbbdc0dc8dd62deb38fa25893dfbd0effcf5f56b14e",
+    "bytes": 22
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/baseline/run.json",
+    "sha256": "61ef127c41e5749a793a262d1d20be71cccbafa968854778aa4c0e9012796152",
+    "bytes": 126
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/baseline/wfr.stderr.log",
+    "sha256": "c2da6f04ffb64f171492a5c0149ffc1a0c1f8491b0fd9bebc19ebe1c1cf464ac",
+    "bytes": 109
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/baseline/wfr.stdout.log",
+    "sha256": "e3697c1f5f628a1426a725ffbd439730176b0ce064e71138c7e60775bc470689",
+    "bytes": 22
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/between-delay/delay.log",
+    "sha256": "721af44017e2b65fef4ac2ef6daa1d0041c3bb77842e336de4f5325d9a976d0a",
+    "bytes": 112
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/between-delay/run.json",
+    "sha256": "d8113eea7478af94a764c7f140e0a3a5da2a710aaa03e29b6ea8cb3048b0b0b6",
+    "bytes": 8018
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/between-delay/wfr.stderr.log",
+    "sha256": "e442bf903fd71f9479ead242e632777dd67008b28cd7d407657f74ede3f3b536",
+    "bytes": 109
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/between-delay/wfr.stdout.log",
+    "sha256": "e3697c1f5f628a1426a725ffbd439730176b0ce064e71138c7e60775bc470689",
+    "bytes": 22
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/between-partition-mongo1-vs-mongo23-client/run.json",
+    "sha256": "775d43f9c010f6692ad8d94dcf6fa1208b952ced12fef0031de0670feb264c5e",
+    "bytes": 29239
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/between-partition-mongo1-vs-mongo23-client/wfr.stderr.log",
+    "sha256": "ed13c9518310b62c2c474a20ee2d46305dbb0be2a0282832c403ebe89121493e",
+    "bytes": 109
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/between-partition-mongo1-vs-mongo23-client/wfr.stdout.log",
+    "sha256": "e3697c1f5f628a1426a725ffbd439730176b0ce064e71138c7e60775bc470689",
+    "bytes": 22
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/between-partition-mongo12-vs-mongo3-client/run.json",
+    "sha256": "02d6c36ac4967a1da94ea7eea7d661f277f34fc9a6a6217f7199bba89f1956af",
+    "bytes": 46823
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/between-partition-mongo12-vs-mongo3-client/wfr.stderr.log",
+    "sha256": "44ef235e47a409e5f20a0ba503d055500c1f41e95c196a625a6b9ab7d237c751",
+    "bytes": 109
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/between-partition-mongo12-vs-mongo3-client/wfr.stdout.log",
+    "sha256": "e3697c1f5f628a1426a725ffbd439730176b0ce064e71138c7e60775bc470689",
+    "bytes": 22
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/between-stop-mongo3/run.json",
+    "sha256": "50ab75d0831832675bc36a2a5d88d4eaebf8bdd6c79e555bdd4b042926dce127",
+    "bytes": 5663
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/between-stop-mongo3/wfr.stderr.log",
+    "sha256": "eb61e8fdbcf77b43ba6e5491d271058a88121fec6dcbc23bdc18a4db0b380339",
+    "bytes": 109
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/between-stop-mongo3/wfr.stdout.log",
+    "sha256": "e3697c1f5f628a1426a725ffbd439730176b0ce064e71138c7e60775bc470689",
+    "bytes": 22
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/recover-delay/delay.log",
+    "sha256": "ac3332aa6938824517c26cc589d456ebc8f956a93eab4d016148673d430c3663",
+    "bytes": 112
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/recover-delay/run.json",
+    "sha256": "0495b002c705131851b78bde8f78ee1e82cbd041a41aedfde1f2e9def46f756d",
+    "bytes": 8021
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/recover-delay/wfr.stderr.log",
+    "sha256": "45c57a237b0fb538d110959fa5f8e7bcddbfdddbe05fea8ccaecf3f0b4c39e8b",
+    "bytes": 109
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/recover-delay/wfr.stdout.log",
+    "sha256": "e3697c1f5f628a1426a725ffbd439730176b0ce064e71138c7e60775bc470689",
+    "bytes": 22
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/recover-partition-mongo1-vs-mongo23-client/run.json",
+    "sha256": "a8ae11cc3c3960b7d2eef9be327bd7a29386a9819b3f71ea08226007a75d3c42",
+    "bytes": 13966
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/recover-partition-mongo1-vs-mongo23-client/wfr.stderr.log",
+    "sha256": "e6c1dc4e0f48ffcbea8d53ce496c139186032959ca3464025647c95f53410775",
+    "bytes": 109
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/recover-partition-mongo1-vs-mongo23-client/wfr.stdout.log",
+    "sha256": "e3697c1f5f628a1426a725ffbd439730176b0ce064e71138c7e60775bc470689",
+    "bytes": 22
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/recover-partition-mongo12-vs-mongo3-client/run.json",
+    "sha256": "685951940a794fc43c55375970f295fd767fa4ec9b0fbca167042810d865f9c4",
+    "bytes": 21742
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/recover-partition-mongo12-vs-mongo3-client/wfr.stderr.log",
+    "sha256": "f36de7e0600fcfbc2214958fd38532d9551c99e593981e722c9daca662d8145e",
+    "bytes": 109
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/recover-partition-mongo12-vs-mongo3-client/wfr.stdout.log",
+    "sha256": "e3697c1f5f628a1426a725ffbd439730176b0ce064e71138c7e60775bc470689",
+    "bytes": 22
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/recover-stop-mongo3/run.json",
+    "sha256": "448bb6aef2e6b70ee922e0a1bee84fec34caf5fa203d43d084cead08a5c1fe3b",
+    "bytes": 5663
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/recover-stop-mongo3/wfr.stderr.log",
+    "sha256": "e710c44669038b37dbcdfe89444f014a2d10f8aa92b95804e5dc7233693dd1db",
+    "bytes": 109
+  },
+  {
+    "path": "artifacts/v5-dual-pold-full-20260925-r2-wfr/recover-stop-mongo3/wfr.stdout.log",
+    "sha256": "e3697c1f5f628a1426a725ffbd439730176b0ce064e71138c7e60775bc470689",
+    "bytes": 22
+  },
+  {
+    "path": "results-summary.json",
+    "sha256": "2b6c09ce54e29f0bd580ccd1596ea433f1ba32961eba3a48e4280ea63db48073",
+    "bytes": 10922
+  }
+]

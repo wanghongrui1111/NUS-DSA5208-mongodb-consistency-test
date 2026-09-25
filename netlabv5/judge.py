@@ -78,10 +78,10 @@ def check(record):
     if experiment == "mw":
         return _history(ops.get("write1"), ops.get("write2"))
     if experiment == "wfr":
-        seed, r1, w1 = ops.get("seed"), ops.get("read1"), ops.get("write1")
-        # WFR only concerns the exact source version R1 observed.  A stale
-        # document/tag from an older attempt is not evidence for this attempt.
-        if not (_usable(seed) and _usable_value(r1) and r1.get("source_write_id") == seed.get("tag")):
+        seed, source, r1, w1 = ops.get("seed"), ops.get("source"), ops.get("read1"), ops.get("write1")
+        predecessor = source or seed
+        # P_old-delay emits ``source`` after delay installation; ordinary WFR uses seed.
+        if not (_usable(predecessor) and _usable_value(r1) and r1.get("source_write_id") == predecessor.get("tag")):
             return "inconclusive"
-        return _history({"ok": True, "tag": seed["tag"]}, w1)
+        return _history({"ok": True, "tag": predecessor["tag"]}, w1)
     raise ValueError(f"unknown experiment {experiment!r}")
