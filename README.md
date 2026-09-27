@@ -58,13 +58,22 @@ PYTHONPATH=. ../.venv/bin/python -m pytest tests -q
 
 `run-parallel.sh` runs RYW, MR, WFR, and MW in four isolated Compose projects. A full run emits 36 `results.json` files and 864 checked cells. The launcher invokes `check_results.py` for each model when collection completes.
 
+## Documentation
+
+English documentation:
+
+- [`docs/ENVIRONMENT-SETUP-EN.md`](docs/ENVIRONMENT-SETUP-EN.md) — reproducible environment, topology, configuration matrix, and run instructions.
+- [`docs/CONSISTENCY-MECHANISMS-EN.md`](docs/CONSISTENCY-MECHANISMS-EN.md) — consistency mechanisms, fault choreography, evidence requirements, and interpretation boundaries.
+
+Chinese source documentation remains available in the corresponding `-ZH.md` files.
+
 ## Result bundle
 
 [`result/`](result/) contains the final validated full-run handoff:
 
-- `REPORT.md` — per-scenario/model 24-cell verdict tables.
-- `INCONCLUSIVE_ANALYSIS.md` — all final-run inconclusive cells, classified by immediate evidence failure.
-- `V4_TO_V5_WFR_POLD_CHANGE.md` — why four v4 WFR P_old violations are v5 inconclusive.
+- `REPORT-EN.md` — English per-scenario/model 24-cell verdict tables (`REPORT.md` is the Chinese source).
+- `INCONCLUSIVE_ANALYSIS-EN.md` — English classification of all final-run inconclusive cells (`INCONCLUSIVE_ANALYSIS.md` is the Chinese source).
+- `V4_TO_V5_WFR_POLD_CHANGE-EN.md` — English explanation of why four v4 WFR P_old violations are v5 inconclusive.
 - `artifacts/` — copied raw `results.json`, `run.json`, and delay evidence for the 864-cell run.
 - `results-summary.json` and `MANIFEST.json` — aggregate counts and SHA-256 inventory.
 
